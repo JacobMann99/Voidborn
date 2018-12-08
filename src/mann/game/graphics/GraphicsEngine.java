@@ -12,8 +12,15 @@ import javax.swing.JFrame;
 
 import mann.game.master.Level;
 
+/**
+ * Controls all graphics. Graphics are accepted from the level, and this engine outputs the level's graphics
+ * to the frame.
+ * @author Jacob Mann
+ */
 public class GraphicsEngine {
 
+	private JFrame frame;
+	
 	private boolean hasLevel = false;
 	private Level level;
 	
@@ -30,7 +37,7 @@ public class GraphicsEngine {
 	 * Initialize JFrame
 	 */
 	private void initialize() {
-		JFrame frame = new JFrame();
+		frame = new JFrame();
 		frame.setSize(new Dimension(width, height));
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -48,6 +55,14 @@ public class GraphicsEngine {
 		if (img != null) {
 			g2d.drawImage(img, (width - img.getWidth()) / 2, (height / 2 - img.getHeight()) / 2, null);
 		}
+	}
+	
+	/**
+	 * Returns JFrame. Currently only used to add a key listener to the frame in InputHandler.
+	 * @return frame
+	 */
+	public JFrame getFrame() {
+		return frame;
 	}
 	
 	public void setLevel(Level level) {
