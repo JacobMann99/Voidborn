@@ -28,10 +28,10 @@ public class InputHandler implements KeyListener {
 	public void keyPressed(KeyEvent arg0) {
 		// Prints KEY EVENT to console when any key is pressed.
 		System.out.println("KEY EVENT");
-		movementUp = getMovementUp(arg0);
-		movementDown = getMovementDown(arg0);
-		movementLeft = getMovementLeft(arg0);
-		movementRight = getMovementRight(arg0);
+		getMovementUp(arg0);
+		getMovementDown(arg0);
+		getMovementLeft(arg0);
+		getMovementRight(arg0);
 		
 		}
 
@@ -47,33 +47,41 @@ public class InputHandler implements KeyListener {
 	@SuppressWarnings("unlikely-arg-type")
 	public Boolean getMovementUp(KeyEvent arg0) {
 		if(arg0.equals(KeyEvent.VK_UP)||(arg0.equals(KeyEvent.VK_W))) {
-			return true;
+			movementUp = true;
+			return movementUp;
 		}else {
-			return false;
+			movementUp = false;
+			return movementUp;
 		}
 	}
 	@SuppressWarnings("unlikely-arg-type")
 	public Boolean getMovementDown(KeyEvent arg0) {
 		if(arg0.equals(KeyEvent.VK_DOWN)||(arg0.equals(KeyEvent.VK_S))) {
-			return true;
+			movementDown = true;
+			return movementDown;
 		}else {
-			return false;
+			movementDown = false;
+			return movementDown;
 		}
 	}
 	@SuppressWarnings("unlikely-arg-type")
 	public Boolean getMovementLeft(KeyEvent arg0) {
 		if(arg0.equals(KeyEvent.VK_LEFT)||(arg0.equals(KeyEvent.VK_A))) {
-			return true;
+			movementLeft = true;
+			return movementLeft;
 		}else {
-			return false;
+			movementLeft = false;
+			return movementLeft;
 		}
 	}
 	@SuppressWarnings("unlikely-arg-type")
 	public Boolean getMovementRight(KeyEvent arg0) {
 		if(arg0.equals(KeyEvent.VK_RIGHT)||arg0.equals(KeyEvent.VK_D)) {
-			return true;
+			movementRight = true;
+			return movementRight;
 		}else {
-			return false;
+			movementRight = false;
+			return movementRight;
 		}
 	}
 }
