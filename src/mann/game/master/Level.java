@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import mann.game.entity.Entity;
 import mann.game.entity.ForegroundTile;
+import mann.game.entity.Tile;
 import mann.game.entity.tool.Hitbox;
 import mann.game.graphics.GraphicsEngine;
 
@@ -30,16 +31,16 @@ public class Level {
 	}
 	
 	public void init() {
-		Hitbox hitbox = new Hitbox();
-		Entity testTile = new ForegroundTile(100, 100, hitbox);
-		hitbox.init(testTile, 0, 0, 16, 16);
+		Entity testTile = Tile.buildTileFromMatrix(0, 100, 100);
+		Entity testTile2 = Tile.buildTileFromMatrix(1, 136, 100);
 		entityList.add(testTile);
 		renderList.add(testTile);
+		entityList.add(testTile2);
+		renderList.add(testTile2);
 	}
 	
 	public void tick() {
-		int[] array = new int[4];
-		int[][] matrix = new int[4][4];
+		
 	}
 	
 	public ArrayList<Entity> getRenderables() {

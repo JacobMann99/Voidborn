@@ -1,10 +1,7 @@
 package mann.game.entity;
 
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-
-import mann.game.entity.ForegroundTile.ForegroundTileGraphic;
 import mann.game.entity.tool.Hitbox;
+import mann.game.graphics.Graphic;
 
 public abstract class Entity {
 
@@ -25,7 +22,7 @@ public abstract class Entity {
 		return y;
 	}
 	
-	public abstract ForegroundTileGraphic getGraphics();
+	public abstract Graphic getGraphics();
 	
 	public abstract void render();
 	

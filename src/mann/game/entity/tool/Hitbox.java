@@ -23,16 +23,11 @@ public class Hitbox {
 	/**
 	 * Sole constructor for the hitbox object.  It adds a reference to its paired entity and sets the bounds and
 	 * position for the hitbox.
-	 * @param e
-	 *            The entity with which the hitbox is paired
-	 * @param xOffset
-	 *            The difference from the entity's x position and the left side of the hitbox
-	 * @param yOffset
-	 *            The difference from the entity's y position and the top side of the hitbox
-	 * @param width
-	 *            The width of the entity's hitbox
-	 * @param height
-	 *            The height of the entity's hitbox
+	 * @param e The entity with which the hitbox is paired
+	 * @param xOffset The difference from the entity's x position and the left side of the hitbox
+	 * @param yOffset The difference from the entity's y position and the top side of the hitbox
+	 * @param width The width of the entity's hitbox
+	 * @param height The height of the entity's hitbox
 	 */
 	public Hitbox() {
 		hitboxArray.add(this);
@@ -64,8 +59,7 @@ public class Hitbox {
 	 * Returns true if this hitbox is colliding with another hitbox in the x direction, false if not.
 	 * If true, the hitbox saves the entity with which it just collided, but this reference is removed
 	 * if the updatePosition method is called.
-	 * @param dir
-	 *            Should be passed in as true for left, false for right
+	 * @param dir Should be passed in as true for left, false for right
 	 * @return true during a collision, false otherwise
 	 */
 	public boolean isCollidingX(boolean dir) {
@@ -88,8 +82,7 @@ public class Hitbox {
 	 * Returns true if this hitbox is colliding with another hitbox in the y direction, false if not.
 	 * If true, the hitbox saves the entity with which it just collided, but this reference is removed
 	 * if the updatePosition method is called.
-	 * @param dir
-	 *            Should be passed in as true for down, false for up
+	 * @param dir Should be passed in as true for down, false for up
 	 * @return true during a collision, false otherwise
 	 */
 	public boolean isCollidingY(boolean dir) {
@@ -114,6 +107,19 @@ public class Hitbox {
 	 */
 	public Entity getCollidedEntity() {
 		return collidingEntity;
+	}
+	
+	/**
+	 * Removes hitbox from the arrayList when it is no longer needed.
+	 * @param hitbox hitbox to be removed
+	 */
+	public static void deleteHitbox(Hitbox hitbox) {
+		for (Hitbox box : hitboxArray) {
+			if (box == hitbox) {
+				hitboxArray.remove(box);
+				return;
+			}
+		}
 	}
 	
 }
