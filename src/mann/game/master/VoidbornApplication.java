@@ -81,10 +81,11 @@ public class VoidbornApplication implements Runnable {
 		final int WIDTH = 1080;
 		final int HEIGHT = WIDTH * 9 / 12;
 		
+		level = new Level();
 		graphics = new GraphicsEngine(WIDTH, HEIGHT);
 		input = new InputHandler(graphics);
-		level = new Level(graphics, input);
-		graphics.setLevel(level);
+		level.initialize(graphics, input);
+		
 	}
 	
 	public static void main(String[] args) {

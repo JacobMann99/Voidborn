@@ -14,9 +14,6 @@ public class Hitbox {
 
 	private static ArrayList<Hitbox> hitboxArray = new ArrayList<Hitbox>();
 	
-	private final int X_OFFSET, Y_OFFSET;
-	private final int WIDTH, HEIGHT;
-	
 	private Entity e;
 	private int[] xBounds = new int[2];
 	private int[] yBounds = new int[2];
@@ -29,33 +26,37 @@ public class Hitbox {
 	 * @param e
 	 *            The entity with which the hitbox is paired
 	 * @param xOffset
-	 *            The positive distance between the entity's x position and the left side of the hitbox
+	 *            The difference from the entity's x position and the left side of the hitbox
 	 * @param yOffset
-	 *            The positive distance between the entity's y position and the top side of the hitbox
+	 *            The difference from the entity's y position and the top side of the hitbox
 	 * @param width
 	 *            The width of the entity's hitbox
 	 * @param height
 	 *            The height of the entity's hitbox
 	 */
-	public Hitbox(Entity e, int xOffset, int yOffset, int width, int height) {
-		this.e = e;
-		this.X_OFFSET = xOffset;
-		this.Y_OFFSET = yOffset;
-		this.WIDTH = width;
-		this.HEIGHT = height;
-		updatePosition();
+	public Hitbox() {
 		hitboxArray.add(this);
 	}
 	
+	public void init(Entity e, int xOffset, int yOffset, int width, int height) {
+		this.e = e;
+		updatePosition(xOffset, yOffset, width, height);
+	}
+	
 	/**
-	 * Method called by the paired entity to update any possible changes in position and clears any saved
-	 * collided entities.
+	 * Updates the position of the hitbox's bounds with an xOffset, yOffset, width, and height
+	 * given by the object
+	 * 
+	 * @param xOffset
+	 * @param yOffset
+	 * @param width
+	 * @param height
 	 */
-	public void updatePosition() {
-		xBounds[0] = e.getX() - X_OFFSET;
-		xBounds[1] = e.getX() - X_OFFSET + WIDTH;
-		yBounds[0] = e.getY() - Y_OFFSET;
-		yBounds[1] = e.getY() - Y_OFFSET + HEIGHT;
+	public void updatePosition(int xOffset, int yOffset, int width, int height) {
+		xBounds[0] = e.getX() + xOffset;
+		xBounds[1] = e.getX() + xOffset + width;
+		yBounds[0] = e.getY() + yOffset;
+		yBounds[1] = e.getY() + yOffset + height;
 		collidingEntity = null;
 	}
 	
@@ -63,15 +64,21 @@ public class Hitbox {
 	 * Returns true if this hitbox is colliding with another hitbox in the x direction, false if not.
 	 * If true, the hitbox saves the entity with which it just collided, but this reference is removed
 	 * if the updatePosition method is called.
+	 * @param dir
+	 *            Should be passed in as true for left, false for right
 	 * @return true during a collision, false otherwise
 	 */
-	public boolean isCollidingX() {
+	public boolean isCollidingX(boolean dir) {
 		for (Hitbox hitbox : hitboxArray) {
 			if (hitbox.yBounds[0] >= this.yBounds[0] || hitbox.yBounds[0] <= this.yBounds[1] ||
 					hitbox.yBounds[1] >= this.yBounds[0] || hitbox.yBounds[1] <= this.yBounds[1]) {
-				if (hitbox.xBounds[0] == this.xBounds[1] + 1 || hitbox.xBounds[1] == this.xBounds[0] - 1)
+				if (dir && hitbox.xBounds[0] == this.xBounds[1] + 1) {
 					collidingEntity = hitbox.e;
 					return true;
+				} else if (!dir && hitbox.xBounds[1] == this.xBounds[0] - 1) {
+					collidingEntity = hitbox.e;
+					return true;
+				}
 			}
 		}
 		return false;
@@ -81,15 +88,21 @@ public class Hitbox {
 	 * Returns true if this hitbox is colliding with another hitbox in the y direction, false if not.
 	 * If true, the hitbox saves the entity with which it just collided, but this reference is removed
 	 * if the updatePosition method is called.
+	 * @param dir
+	 *            Should be passed in as true for down, false for up
 	 * @return true during a collision, false otherwise
 	 */
-	public boolean isCollidingY() {
+	public boolean isCollidingY(boolean dir) {
 		for (Hitbox hitbox : hitboxArray) {
 			if (hitbox.xBounds[0] >= this.xBounds[0] || hitbox.xBounds[0] <= this.xBounds[1] ||
 					hitbox.xBounds[1] >= this.xBounds[0] || hitbox.xBounds[1] <= this.xBounds[1]) {
-				if (hitbox.yBounds[0] == this.yBounds[1] + 1 || hitbox.yBounds[1] == this.yBounds[0] - 1)
+				if (dir && hitbox.yBounds[0] == this.yBounds[1] + 1) {
 					collidingEntity = hitbox.e;
 					return true;
+				} else if (!dir && hitbox.yBounds[1] == this.yBounds[0] - 1) {
+					collidingEntity = hitbox.e;
+					return true;
+				}
 			}
 		}
 		return false;
