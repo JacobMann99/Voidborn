@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import mann.game.entity.Entity;
 import mann.game.entity.ForegroundTile;
-import mann.game.entity.Tile;
 import mann.game.entity.tool.Hitbox;
+import mann.game.entity.tool.Tile;
 import mann.game.graphics.GraphicsEngine;
 
 /**

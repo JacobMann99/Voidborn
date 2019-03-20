@@ -1,6 +1,8 @@
-package mann.game.entity;
+package mann.game.entity.tool;
 
 import java.awt.Color;
+
+import mann.game.entity.ForegroundTile;
 
 public class Tile {
 
