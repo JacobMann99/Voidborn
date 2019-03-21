@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 /**
@@ -12,7 +13,7 @@ import javax.swing.JPanel;
  * @author Jacob Mann
  *
  */
-public class Graphic extends JPanel {
+public class Graphic extends JComponent {
 
 	private Rectangle2D img;
 	private Color color;

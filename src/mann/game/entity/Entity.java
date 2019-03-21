@@ -24,6 +24,8 @@ public abstract class Entity {
 	
 	public abstract Graphic getGraphics();
 	
+	public abstract void tick();
+	
 	public abstract void render();
 	
 }
