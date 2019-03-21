@@ -32,7 +32,7 @@ public class Level {
 	
 	public void init() {
 		Entity testTile = Tile.buildTileFromMatrix(0, 100, 100);
-		Entity testTile2 = Tile.buildTileFromMatrix(1, 136, 100);
+		Entity testTile2 = Tile.buildTileFromMatrix(1, 200, 200);
 		entityList.add(testTile);
 		renderList.add(testTile);
 		entityList.add(testTile2);
@@ -40,7 +40,9 @@ public class Level {
 	}
 	
 	public void tick() {
-		
+		for (Entity e : entityList) {
+			e.tick();
+		}
 	}
 	
 	public ArrayList<Entity> getRenderables() {
