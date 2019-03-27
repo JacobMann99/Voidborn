@@ -7,14 +7,14 @@ import mann.game.entity.ForegroundTile;
 public class Tile {
 
 	private static Tile[] tiles = new Tile[256];
-	private static final Tile GRASS = new Tile(0, Color.GREEN, 0);
-	private static final Tile STONE = new Tile(1, Color.LIGHT_GRAY, 0);
+	private static final Tile GRASS = new Tile(0, 0x00ff00, 0, true);
+	private static final Tile STONE = new Tile(1, 0xcccccc, 0, true);
 	
 	private int id;
-	private Color color;
+	private int color;
 	private int imageColor;
 	
-	public Tile(int id, Color color, int imageColor) {
+	public Tile(int id, int color, int imageColor, boolean isForeground) {
 		this.id = id;
 		this.color = color;
 		this.imageColor = imageColor;
@@ -25,7 +25,7 @@ public class Tile {
 		}
 	}
 	
-	public Color getColor() {
+	public int getColor() {
 		return color;
 	}
 	
