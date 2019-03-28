@@ -33,7 +33,7 @@ public class Level {
 	}
 	
 	public void init() {
-		Zone test = new Zone("/testimages/Untitled-2.png");
+		Zone test = new Zone("/testimages/Untitled-4.png");
 		for (Entity e : test.getEntities()) {
 			entityList.add(e);
 			renderList.add(e);
@@ -44,6 +44,10 @@ public class Level {
 		for (Entity e : entityList) {
 			e.tick();
 		}
+		if (input.up.isPressed()) graphics.setOffset(0, -4);
+		if (input.down.isPressed()) graphics.setOffset(0, 4);
+		if (input.left.isPressed()) graphics.setOffset(-4, 0);
+		if (input.right.isPressed()) graphics.setOffset(4, 0);
 	}
 	
 	public ArrayList<Entity> getRenderables() {

@@ -4,14 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
 import mann.game.entity.Entity;
@@ -33,11 +29,11 @@ public class GraphicsEngine {
 
 	private int width;
 	private int height;
+	private int xOffset;
+	private int yOffset;
 
 	private BufferedImage image;
 	private int[] pixels;
-
-	int renderCount = 0;
 
 	public GraphicsEngine(int width, int height) {
 		this.width = width;
@@ -50,10 +46,6 @@ public class GraphicsEngine {
 	 * Initialize JFrame
 	 */
 	private void initialize() {
-		for (int i = 0; i < pixels.length; i++) {
-			pixels[i] = 0xffffff;
-		}
-		
 		canvas.setMinimumSize(new Dimension(width, height));
 		canvas.setMaximumSize(new Dimension(width, height));
 		canvas.setPreferredSize(new Dimension(width, height));
@@ -61,7 +53,7 @@ public class GraphicsEngine {
 		frame.setSize(new Dimension(width, height));
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setUndecorated(true);
+		//frame.setUndecorated(true);
 
 		frame.add(canvas, BorderLayout.CENTER);
 		// for (Entity e : level.getRenderables()) {
@@ -77,8 +69,8 @@ public class GraphicsEngine {
 	 * 
 	 * @return frame
 	 */
-	public JFrame getFrame() {
-		return frame;
+	public Canvas getCanvas() {
+		return canvas;
 	}
 
 	public void setLevel(Level level) {
@@ -94,31 +86,31 @@ public class GraphicsEngine {
 			canvas.createBufferStrategy(2);
 			return;
 		}
-
+		
 		for (Entity e : level.getRenderables()) {
 			int[] entityPixels = e.render();
 			for (int i = 0; i < e.getWidth(); i++) {
 				for (int j = 0; j < e.getHeight(); j++) {
-					//if ((i + e.getX()) + (j + e.getY() - (e.getHeight() - 1)) * width >= pixels.length) continue;
-					//if ((i + e.getX()) + (j + e.getY() - (e.getHeight() - 1)) * width < 0) continue;
-					if (entityPixels[i + j * e.getWidth()] > 0) {
-						pixels[(i + e.getX()) + (j + e.getY() - (e.getHeight() - 1)) * width] = entityPixels[i
-								+ j * e.getWidth()];
+					if (i - xOffset + e.getX() < 0) continue;
+					if (i - xOffset + 1 + e.getX() > width) continue;
+					int position = (i - xOffset + e.getX()) + (j - yOffset + e.getY() - (e.getHeight() - 1)) * width;
+					if (entityPixels[i + j * e.getWidth()] > 0 && position >= 0 && position < width * height) {
+						pixels[position] = entityPixels[i + j * e.getWidth()];
 					}
 				}
 			}
 		}
-
-		// for (int i = 0; i < pixels.length; i++) {
-		// pixels[i] = i / (renderCount + 1);
-		// }
-		// renderCount++;
 
 		Graphics g = bs.getDrawGraphics();
 		g.drawImage(image, 0, 0, canvas.getWidth(), canvas.getHeight(), null);
 
 		g.dispose();
 		bs.show();
+	}
+	
+	public void setOffset(int xOffset, int yOffset) {
+		this.xOffset += xOffset;
+		this.yOffset += yOffset;
 	}
 
 }
