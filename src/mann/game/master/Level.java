@@ -33,13 +33,10 @@ public class Level {
 	public void init() {
 		Entity testTile = Tile.buildTileFromMatrix(0, 100, 100);
 		Entity testTile2 = Tile.buildTileFromMatrix(1, 200, 200);
-		Entity testTile3 = Tile.buildTileFromMatrix(2, 300, 300);
 		entityList.add(testTile);
 		renderList.add(testTile);
 		entityList.add(testTile2);
 		renderList.add(testTile2);
-		entityList.add(testTile3);
-		renderList.add(testTile3);
 	}
 	
 	public void tick() {

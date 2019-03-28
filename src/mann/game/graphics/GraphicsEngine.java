@@ -85,15 +85,10 @@ public class GraphicsEngine {
 	}
 
 	public void render() {
-<<<<<<< HEAD
-		for (Entity e : level.getRenderables()){
-			e.render();
-=======
 		BufferStrategy bs = canvas.getBufferStrategy();
 		if (bs == null) {
 			canvas.createBufferStrategy(2);
 			return;
->>>>>>> branch 'master' of https://github.com/JacobMann99/Voidborn.git
 		}
 
 		for (Entity e : level.getRenderables()) {
@@ -108,7 +103,7 @@ public class GraphicsEngine {
 
 		//for (int i = 0; i < pixels.length; i++) {
 		//	pixels[i] = i / (renderCount + 1);
-		//}
+		//
 		//renderCount++;
 
 		Graphics g = bs.getDrawGraphics();

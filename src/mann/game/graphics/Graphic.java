@@ -33,7 +33,6 @@ public class Graphic extends JComponent {
 	
 	public void render() {
 		repaint();
-		revalidate();
 	}
 	
 }
