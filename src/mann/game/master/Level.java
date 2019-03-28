@@ -5,12 +5,13 @@ import java.util.ArrayList;
 import mann.game.entity.Entity;
 import mann.game.entity.ForegroundTile;
 import mann.game.entity.tool.Hitbox;
-import mann.game.entity.tool.Tile;
+import mann.game.entity.tool.TileBuilder;
 import mann.game.graphics.GraphicsEngine;
 
 /**
  * Controls game logic; represented by the main class's tick() method. All processes besides graphics
  * respond to this class.
+ * 
  * @author Jacob Mann
  */
 public class Level {
@@ -31,8 +32,8 @@ public class Level {
 	}
 	
 	public void init() {
-		Entity testTile = Tile.buildTileFromMatrix(0, 100, 100);
-		Entity testTile2 = Tile.buildTileFromMatrix(1, 200, 200);
+		Entity testTile = TileBuilder.buildTileFromMatrix(2, 100, 100);
+		Entity testTile2 = TileBuilder.buildTileFromMatrix(1, 200, 200);
 		entityList.add(testTile);
 		renderList.add(testTile);
 		entityList.add(testTile2);

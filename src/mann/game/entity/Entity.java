@@ -8,11 +8,13 @@ public abstract class Entity {
 	protected int x, y;
 	protected int width, height;
 	protected int[] pixels;
-	protected Hitbox hitbox;//This field should be here, we just don't want to add it to the constructor.
+	protected Hitbox hitbox;
 	
 	public Entity(int x, int y, int width, int height) {
 		this.x = x;
 		this.y = y;
+		this.width = width;
+		this.height = height;
 		pixels = new int[width * height];
 	}
 	

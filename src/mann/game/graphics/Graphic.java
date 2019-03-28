@@ -1,37 +1,67 @@
 package mann.game.graphics;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
-import javax.swing.JComponent;
-import javax.swing.JPanel;
+import javax.imageio.ImageIO;
 
 /**
+ * Simple object designed to read an image file, store the color data from its pixels, and keep
+ * record of the image width and height.
  * 
  * @author Jacob Mann
- *
  */
-public class Graphic extends JComponent {
-
-	private Rectangle2D img;
-	private Color color;
+public class Graphic {
 	
-	public Graphic(int x, int y, int width, int height, Color color) {
-		img = new Rectangle2D.Double(x, y, width, height);
-		this.color = color;
+	private int width;
+	private int height;
+	
+	private int[] pixels;
+	
+	public Graphic(String path) {
+		BufferedImage image = null;
+		
+		try {
+			image = ImageIO.read(this.getClass().getResourceAsStream(path));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		this.width = image.getWidth();
+		this.height = image.getHeight();
+		
+		pixels = image.getRGB(0, 0, width, height, null, 0, width);
+		
+		System.out.println(pixels[84238]);
+		for (int i = 0; i < pixels.length; i++) {
+			if (pixels[i] != 0 && (pixels[i] & 0xffffff) == 0) {
+				pixels[i] = -1;
+			} else {	
+				pixels[i] = pixels[i] & 0xffffff;
+			}
+		}
+		System.out.println(pixels[84238]);
 	}
 	
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		Graphics2D g2d = (Graphics2D) g;
-		g2d.setColor(color);
-		g2d.fill(img);
+	/**
+	 * @return an array of the rgb values from each pixel in the array
+	 */
+	public int[] getPixels() {
+		return pixels;
 	}
 	
-	public void render() {
-		repaint();
+	/**
+	 * @return the width of the image
+	 */
+	public int getWidth() {
+		return width;
+	}
+	
+	/**
+	 * @return the height of the image
+	 */
+	public int getHeight() {
+		return height;
 	}
 	
 }

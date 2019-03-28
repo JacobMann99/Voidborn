@@ -50,6 +50,10 @@ public class GraphicsEngine {
 	 * Initialize JFrame
 	 */
 	private void initialize() {
+		for (int i = 0; i < pixels.length; i++) {
+			pixels[i] = 0xffffff;
+		}
+		
 		canvas.setMinimumSize(new Dimension(width, height));
 		canvas.setMaximumSize(new Dimension(width, height));
 		canvas.setPreferredSize(new Dimension(width, height));
@@ -95,16 +99,18 @@ public class GraphicsEngine {
 			int[] entityPixels = e.render();
 			for (int i = 0; i < e.getWidth(); i++) {
 				for (int j = 0; j < e.getHeight(); j++) {
-					pixels[(i + e.getX()) + (j + e.getY() - (e.getHeight() - 1)) * width] = entityPixels[i
-							+ j * e.getWidth()];
+					if (entityPixels[i + j * e.getWidth()] > 0) {
+						pixels[(i + e.getX()) + (j + e.getY() - (e.getHeight() - 1)) * width] = entityPixels[i
+								+ j * e.getWidth()];
+					}
 				}
 			}
 		}
 
-		//for (int i = 0; i < pixels.length; i++) {
-		//	pixels[i] = i / (renderCount + 1);
-		//}
-		//renderCount++;
+		// for (int i = 0; i < pixels.length; i++) {
+		// pixels[i] = i / (renderCount + 1);
+		// }
+		// renderCount++;
 
 		Graphics g = bs.getDrawGraphics();
 		g.drawImage(image, 0, 0, canvas.getWidth(), canvas.getHeight(), null);
