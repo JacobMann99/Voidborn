@@ -32,7 +32,6 @@ public class Graphic {
 		
 		pixels = image.getRGB(0, 0, width, height, null, 0, width);
 		
-		System.out.println(pixels[84238]);
 		for (int i = 0; i < pixels.length; i++) {
 			if (pixels[i] != 0 && (pixels[i] & 0xffffff) == 0) {
 				pixels[i] = -1;
@@ -40,7 +39,6 @@ public class Graphic {
 				pixels[i] = pixels[i] & 0xffffff;
 			}
 		}
-		System.out.println(pixels[84238]);
 	}
 	
 	/**

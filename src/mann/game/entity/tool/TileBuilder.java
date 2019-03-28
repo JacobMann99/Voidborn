@@ -13,9 +13,9 @@ import mann.game.entity.Tile;
 public class TileBuilder {
 
 	private static TileBuilder[] tiles = new TileBuilder[256];
-	private static final TileBuilder AIR = new TileBuilder(0, 0xffffff, 0, false);
-	private static final TileBuilder GRASS = new TileBuilder(1, 0x00ff00, 0, true);
-	private static final TileBuilder STONE = new TileBuilder(2, 0xcccccc, 0, true);
+	private static final TileBuilder AIR = new TileBuilder(0, 0xffffff, 0xffffff, false);
+	private static final TileBuilder GRASS = new TileBuilder(1, 0x00ff00, 0x00ff00, true);
+	private static final TileBuilder STONE = new TileBuilder(2, 0xcccccc, 0xcccccc, true);
 	
 	private int id;
 	private int color;

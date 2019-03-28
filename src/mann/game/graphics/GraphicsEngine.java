@@ -99,6 +99,8 @@ public class GraphicsEngine {
 			int[] entityPixels = e.render();
 			for (int i = 0; i < e.getWidth(); i++) {
 				for (int j = 0; j < e.getHeight(); j++) {
+					//if ((i + e.getX()) + (j + e.getY() - (e.getHeight() - 1)) * width >= pixels.length) continue;
+					//if ((i + e.getX()) + (j + e.getY() - (e.getHeight() - 1)) * width < 0) continue;
 					if (entityPixels[i + j * e.getWidth()] > 0) {
 						pixels[(i + e.getX()) + (j + e.getY() - (e.getHeight() - 1)) * width] = entityPixels[i
 								+ j * e.getWidth()];
