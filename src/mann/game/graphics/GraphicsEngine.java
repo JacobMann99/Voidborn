@@ -64,7 +64,7 @@ public class GraphicsEngine {
 	}
 	
 	public void render() {
-		for (Entity e : level.getRenderables()) {
+		for (Entity e : level.getRenderables()){
 			e.render();
 		}
 	}

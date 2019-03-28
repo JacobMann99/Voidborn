@@ -7,6 +7,7 @@ import java.awt.geom.Rectangle2D;
 
 import javax.swing.JComponent;
 import javax.swing.JPanel;
+import javax.swing.text.html.parser.Entity;
 
 /**
  * 
@@ -32,6 +33,7 @@ public class Graphic extends JComponent {
 	
 	public void render() {
 		repaint();
+		revalidate();
 	}
 	
 }

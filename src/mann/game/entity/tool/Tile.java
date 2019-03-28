@@ -9,6 +9,7 @@ public class Tile {
 	private static Tile[] tiles = new Tile[256];
 	private static final Tile GRASS = new Tile(0, Color.GREEN, 0);
 	private static final Tile STONE = new Tile(1, Color.LIGHT_GRAY, 0);
+	private static final Tile OBSIDIAN = new Tile(2, Color.BLACK, 0);
 	
 	private int id;
 	private Color color;
