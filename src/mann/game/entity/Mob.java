@@ -5,13 +5,13 @@ import mann.game.entity.tool.Hitbox;
 public abstract class Mob extends Entity {
 
 	public Mob(int x, int y, int width, int height) {
-		super(x, y);
+		super(x, y, width, height);
 		hitbox = new Hitbox();
 		hitbox.init(this, 0, 0, width, height);
 	}
 	
 	public Mob(int x, int y, int width, int height, int hitboxXOffset, int hitboxYOffset) {
-		super(x,y);
+		super(x, y, width, height);
 		hitbox = new Hitbox();
 		hitbox.init(this, hitboxXOffset, hitboxYOffset, width, height);
 	}
