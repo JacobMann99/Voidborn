@@ -33,11 +33,7 @@ public class Graphic {
 		pixels = image.getRGB(0, 0, width, height, null, 0, width);
 		
 		for (int i = 0; i < pixels.length; i++) {
-			if (pixels[i] != 0 && (pixels[i] & 0xffffff) == 0) {
-				pixels[i] = -1;
-			} else {	
-				pixels[i] = pixels[i] & 0xffffff;
-			}
+			pixels[i] = pixels[i] & 0xffffff;
 		}
 	}
 	

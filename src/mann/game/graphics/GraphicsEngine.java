@@ -100,6 +100,27 @@ public class GraphicsEngine {
 				}
 			}
 		}
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
+				int position = i + j * width;
+				if (i + xOffset < 0) {
+					pixels[position] = 0x000000;
+					continue;
+				}
+				if (i + xOffset + 1 > level.getZone().getWidth()) {
+					pixels[position] = 0x000000;
+					continue;
+				}
+				if (j + yOffset < 0) {
+					pixels[position] = 0x000000;
+					continue;
+				}
+				if (j + yOffset + 1 > level.getZone().getHeight()) {
+					pixels[position] = 0x000000;
+					continue;
+				}
+			}
+		}
 
 		Graphics g = bs.getDrawGraphics();
 		g.drawImage(image, 0, 0, canvas.getWidth(), canvas.getHeight(), null);
