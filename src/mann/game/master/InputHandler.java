@@ -2,6 +2,8 @@ package mann.game.master;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import mann.game.graphics.GraphicsEngine;
 
@@ -10,7 +12,8 @@ import mann.game.graphics.GraphicsEngine;
  * @author Jacob Mann
  */
 
-public class InputHandler implements KeyListener {
+public class InputHandler implements KeyListener, MouseListener {
+	private final boolean[] NUMBER_OF_KEY = new boolean[256];
 	private Boolean movementUp;
 	private Boolean movementDown;
 	private Boolean movementLeft;
@@ -58,6 +61,7 @@ public class InputHandler implements KeyListener {
 	public Boolean getMovementDown(KeyEvent arg0) {
 		if(arg0.equals(KeyEvent.VK_DOWN)||(arg0.equals(KeyEvent.VK_S))) {
 			movementDown = true;
+			System.out.println("Pressed D");
 			return movementDown;
 		}else {
 			movementDown = false;
@@ -83,5 +87,35 @@ public class InputHandler implements KeyListener {
 			movementRight = false;
 			return movementRight;
 		}
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 }

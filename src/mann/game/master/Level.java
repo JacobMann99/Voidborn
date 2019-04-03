@@ -44,10 +44,10 @@ public class Level {
 		for (Entity e : entityList) {
 			e.tick();
 		}
+		
 	}
 	
 	public ArrayList<Entity> getRenderables() {
 		return renderList;
 	}
-	
 }

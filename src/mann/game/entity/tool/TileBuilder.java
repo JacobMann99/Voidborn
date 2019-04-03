@@ -16,6 +16,7 @@ public class TileBuilder {
 	private static final TileBuilder AIR = new TileBuilder(0, 0xffffff, 0xffffff, false);
 	private static final TileBuilder GRASS = new TileBuilder(1, 0x00ff00, 0x00ff00, true);
 	private static final TileBuilder STONE = new TileBuilder(2, 0xcccccc, 0xcccccc, true);
+	private static final TileBuilder PLAYER = new TileBuilder(3, 0x800080, 0x800080, true);
 	
 	private int id;
 	private int color;

@@ -9,6 +9,7 @@ public class Tile {
 	private static Tile[] tiles = new Tile[256];
 	private static final Tile GRASS = new Tile(0, 0x00ff00, 0, true);
 	private static final Tile STONE = new Tile(1, 0xcccccc, 0, true);
+	private static final Tile PLAYER = new Tile(0, 0x800080, 0, true);
 	
 	private int id;
 	private int color;
