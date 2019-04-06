@@ -100,6 +100,7 @@ public class GraphicsEngine {
 				}
 			}
 		}
+		
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
 				int position = i + j * width;
