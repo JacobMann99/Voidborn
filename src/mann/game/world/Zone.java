@@ -39,4 +39,12 @@ public class Zone {
 		return tiles;
 	}
 	
+	public int getWidth() {
+		return width * 36;
+	}
+	
+	public int getHeight() {
+		return height * 36;
+	}
+	
 }

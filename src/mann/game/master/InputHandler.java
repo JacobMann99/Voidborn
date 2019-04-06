@@ -4,6 +4,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import mann.game.graphics.GraphicsEngine;
 
@@ -12,8 +14,8 @@ import mann.game.graphics.GraphicsEngine;
  * @author Jacob Mann
  */
 
-public class InputHandler implements KeyListener, MouseListener {
-	private final boolean[] NUMBER_OF_KEY = new boolean[256];
+
+public class InputHandler implements KeyListener {
 	private Boolean movementUp;
 	private Boolean movementDown;
 	private Boolean movementLeft;
@@ -24,25 +26,88 @@ public class InputHandler implements KeyListener, MouseListener {
 	 *            GraphicsEngine class passed in from the VoidbornApplication main class
 	 VK_LEFT, VK_DOWN, VK_RIGHT, VK_UP*/
 	public InputHandler(GraphicsEngine graphics) {
-		graphics.getFrame().addKeyListener(this);
+		graphics.getCanvas().addKeyListener(this);
 	}
-	
-	@Override
-	public void keyPressed(KeyEvent arg0) {
-		// Prints KEY EVENT to console when any key is pressed.
-		System.out.println("KEY EVENT");
-		getMovementUp(arg0);
-		getMovementDown(arg0);
-		getMovementLeft(arg0);
-		getMovementRight(arg0);
+
+	public class Key {
+		private int numTimesPressed = 0;
+		public boolean pressed = false;
 		
+		public int getNumTimesPressed() {
+			return numTimesPressed;
 		}
 
-	@Override
-	public void keyReleased(KeyEvent arg0) {
-		// Probably will be unnecessary, but this method's presence is required for every KeyListener interface
+		public boolean isPressed() {
+			return pressed;
+		}
+		
+		public void toggleSwitch() {
+			if (!pressed) {
+				pressed = true;
+			} else {
+				pressed = false;
+			}
+			System.out.println(pressed);
+		}
+
+		public void toggle(boolean isPressed) {
+			pressed = isPressed;
+			if (pressed) {
+				numTimesPressed++;
+			}
+		}
+	}
+	
+	public List<Key>keys = new ArrayList<Key>();
+	
+	public Key up = new Key();
+	public Key down = new Key();
+	public Key left = new Key();
+	public Key right = new Key();
+	public Key shift = new Key();
+	public Key control = new Key();
+	public Key space = new Key();
+	public Key escape = new Key();
+
+	public void keyPressed(KeyEvent e) {
+		if (e.getKeyCode() != KeyEvent.VK_ESCAPE) {
+			toggleKey(e.getKeyCode(), true);
+		} else {
+			escape.toggleSwitch();
+		}
 	}
 
+	public void keyReleased(KeyEvent e) {
+		toggleKey(e.getKeyCode(), false);
+	}
+
+	public void keyTyped1(KeyEvent e) {
+		
+	}
+	
+	public void toggleKey(int keyCode, boolean isPressed) {
+		if (keyCode == KeyEvent.VK_W) {
+			up.toggle(isPressed);
+		}
+		if (keyCode == KeyEvent.VK_S) {
+			down.toggle(isPressed);
+		}
+		if (keyCode == KeyEvent.VK_A) {
+			left.toggle(isPressed);
+		}
+		if (keyCode == KeyEvent.VK_D) {
+			right.toggle(isPressed);
+		}
+		if (keyCode == KeyEvent.VK_SHIFT) {
+			shift.toggle(isPressed);
+		}
+		if (keyCode == KeyEvent.VK_CONTROL) {
+			control.toggle(isPressed);
+		}
+		if (keyCode == KeyEvent.VK_SPACE) {
+			space.toggle(isPressed);
+		}
+	}
 	@Override
 	public void keyTyped(KeyEvent arg0) {
 		// Probably will be unnecessary, but this method's presence is required for every KeyListener interface
@@ -87,35 +152,5 @@ public class InputHandler implements KeyListener, MouseListener {
 			movementRight = false;
 			return movementRight;
 		}
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 }

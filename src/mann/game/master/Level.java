@@ -21,6 +21,7 @@ public class Level {
 	private InputHandler input;
 	private ArrayList<Entity> entityList = new ArrayList<Entity>();
 	private ArrayList<Entity> renderList = new ArrayList<Entity>();
+	private Zone zone;
 	
 	public Level() {
 		init();
@@ -33,8 +34,8 @@ public class Level {
 	}
 	
 	public void init() {
-		Zone test = new Zone("/testimages/Untitled-2.png");
-		for (Entity e : test.getEntities()) {
+		zone = new Zone("/testimages/Untitled-4.png");
+		for (Entity e : zone.getEntities()) {
 			entityList.add(e);
 			renderList.add(e);
 		}
@@ -44,10 +45,17 @@ public class Level {
 		for (Entity e : entityList) {
 			e.tick();
 		}
-		
+		if (input.up.isPressed()) graphics.setOffset(0, -4);
+		if (input.down.isPressed()) graphics.setOffset(0, 4);
+		if (input.left.isPressed()) graphics.setOffset(-4, 0);
+		if (input.right.isPressed()) graphics.setOffset(4, 0);
 	}
 	
 	public ArrayList<Entity> getRenderables() {
 		return renderList;
+	}
+	
+	public Zone getZone() {
+		return zone;
 	}
 }
