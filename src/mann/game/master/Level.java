@@ -24,35 +24,30 @@ public class Level {
 	private ArrayList<Entity> renderList = new ArrayList<Entity>();
 	private Zone zone;
 	private Player player;
-	public Level() {
-		init();
-	}
 	
 	public void initialize(GraphicsEngine g, InputHandler input) {
 		this.graphics = g;
 		this.input = input;
 		graphics.setLevel(this);
+		init();
 	}
 	
 	public void init() {
 		zone = new Zone("/testimages/Untitled-4.png");
 		player = new Player(600, 600, 76, 164, "/testimages/player_test.png", this.input, null);
 		for (Entity e : zone.getEntities()) {
-			entityList.add(player);
-			renderList.add(player);
 			entityList.add(e);
 			renderList.add(e);
 		}
+		entityList.add(player);
+		renderList.add(player);
 	}
 	
 	public void tick() {
 		for (Entity e : entityList) {
 			e.tick();
 		}
-		if (input.up.isPressed()) graphics.setOffset(0, -4);
-		if (input.down.isPressed()) graphics.setOffset(0, 4);
-		if (input.left.isPressed()) graphics.setOffset(-4, 0);
-		if (input.right.isPressed()) graphics.setOffset(4, 0);
+		graphics.setOffset(player.getX(), player.getY() - player.getHeight() * 2 / 3);
 	}
 	
 	public ArrayList<Entity> getRenderables() {

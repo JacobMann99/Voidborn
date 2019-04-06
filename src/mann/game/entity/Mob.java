@@ -17,8 +17,8 @@ public abstract class Mob extends Entity {
 	public Mob(int x, int y, int width, int height, int hitWidth, int hitHeight, int hitboxXOffset,
 			int hitboxYOffset, String filepath) {
 		super(x, y, width, height);
-		hitbox = new Hitbox();
-		hitbox.init(this, hitboxXOffset, hitboxYOffset, hitWidth, hitHeight);
+		this.hitbox = new Hitbox();
+		this.hitbox.init(this, hitboxXOffset, hitboxYOffset, hitWidth, hitHeight);
 		graphic = new Graphic(filepath);
 	}
 
@@ -27,7 +27,7 @@ public abstract class Mob extends Entity {
 			boolean dir = true;
 			if (xDelta > 0)
 				dir = false;
-			for (int i = 0; i < xDelta; i++) {
+			for (int i = 0; i < Math.abs(xDelta); i++) {
 				if (hitbox.isCollidingX(dir))
 					return false;
 				this.x += xDelta / Math.abs(xDelta);
@@ -41,7 +41,7 @@ public abstract class Mob extends Entity {
 			boolean dir = true;
 			if (yDelta > 0)
 				dir = false;
-			for (int i = 0; i < yDelta; i++) {
+			for (int i = 0; i < Math.abs(yDelta); i++) {
 				if (hitbox.isCollidingX(dir))
 					return false;
 				this.y += yDelta / Math.abs(yDelta);

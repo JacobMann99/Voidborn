@@ -53,7 +53,7 @@ public class GraphicsEngine {
 		frame.setSize(new Dimension(width, height));
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//frame.setUndecorated(true);
+		frame.setUndecorated(true);
 
 		frame.add(canvas, BorderLayout.CENTER);
 		// for (Entity e : level.getRenderables()) {
@@ -100,6 +100,7 @@ public class GraphicsEngine {
 				}
 			}
 		}
+		/**
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
 				int position = i + j * width;
@@ -121,6 +122,7 @@ public class GraphicsEngine {
 				}
 			}
 		}
+		**/
 		Graphics g = bs.getDrawGraphics();
 		g.drawImage(image, 0, 0, canvas.getWidth(), canvas.getHeight(), null);
 
@@ -129,8 +131,12 @@ public class GraphicsEngine {
 	}
 	
 	public void setOffset(int xOffset, int yOffset) {
-		this.xOffset += xOffset;
-		this.yOffset += yOffset;
+		this.xOffset = xOffset - width / 2;
+		this.yOffset = yOffset - height / 2;
+		if (this.xOffset < 0) this.xOffset = 0;
+		if (this.xOffset > level.getZone().getWidth() - width) this.xOffset = level.getZone().getWidth() - width;
+		if (this.yOffset < 0) this.yOffset = 0;
+		if (this.yOffset > level.getZone().getHeight() - height) this.yOffset = level.getZone().getHeight() - height;
 	}
 
 }
