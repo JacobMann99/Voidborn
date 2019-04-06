@@ -98,12 +98,18 @@ public class GraphicsEngine {
 						pixels[position] = entityPixels[i + j * e.getWidth()];
 					}
 				}
+<<<<<<< HEAD
 			}
 		}
 		// for (int i = 0; i < pixels.length; i++) {
 		// pixels[i] = i / (renderCount + 1);
 		// }
 		// renderCount++;
+=======
+			}
+		}
+		
+>>>>>>> branch 'master' of https://github.com/JacobMann99/Voidborn.git
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
 				int position = i + j * width;

@@ -38,6 +38,7 @@ public class Graphic {
 		
 		for (int i = 0; i < pixels.length; i++) {
 			pixels[i] = pixels[i] & 0xffffff;
+			if (pixels[i] == 0x7f007f) pixels[i] = -1;
 		}
 	}
 	
