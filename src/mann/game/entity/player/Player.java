@@ -13,7 +13,10 @@ public class Player extends Mob {
 	}
 	
 	public void tick() {
-		
+		if (input.up.isPressed()) moveY(-4);
+		if (input.down.isPressed()) moveY(4);
+		if (input.left.isPressed()) moveX(-4);
+		if (input.right.isPressed()) moveX(4);
 	}
 
 	public int[] render() {
