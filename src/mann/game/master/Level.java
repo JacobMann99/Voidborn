@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import mann.game.entity.Entity;
 import mann.game.entity.ForegroundTile;
+import mann.game.entity.player.Player;
 import mann.game.entity.tool.Hitbox;
 import mann.game.entity.tool.TileBuilder;
 import mann.game.graphics.GraphicsEngine;
@@ -22,7 +23,7 @@ public class Level {
 	private ArrayList<Entity> entityList = new ArrayList<Entity>();
 	private ArrayList<Entity> renderList = new ArrayList<Entity>();
 	private Zone zone;
-	
+	private Player player;
 	public Level() {
 		init();
 	}
@@ -35,7 +36,10 @@ public class Level {
 	
 	public void init() {
 		zone = new Zone("/testimages/Untitled-4.png");
+		player = new Player(600, 600, 76, 164, "/testimages/player_test.png", this.input, null);
 		for (Entity e : zone.getEntities()) {
+			entityList.add(player);
+			renderList.add(player);
 			entityList.add(e);
 			renderList.add(e);
 		}

@@ -94,22 +94,12 @@ public class GraphicsEngine {
 					if (i - xOffset + e.getX() < 0) continue;
 					if (i - xOffset + 1 + e.getX() > width) continue;
 					int position = (i - xOffset + e.getX()) + (j - yOffset + e.getY() - (e.getHeight() - 1)) * width;
-					if (entityPixels[i + j * e.getWidth()] > 0 && position >= 0 && position < width * height) {
+					if (entityPixels[i + j * e.getWidth()] >= 0 && position >= 0 && position < width * height) {
 						pixels[position] = entityPixels[i + j * e.getWidth()];
 					}
 				}
-<<<<<<< HEAD
 			}
 		}
-		// for (int i = 0; i < pixels.length; i++) {
-		// pixels[i] = i / (renderCount + 1);
-		// }
-		// renderCount++;
-=======
-			}
-		}
-		
->>>>>>> branch 'master' of https://github.com/JacobMann99/Voidborn.git
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
 				int position = i + j * width;
