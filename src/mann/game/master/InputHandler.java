@@ -2,6 +2,8 @@ package mann.game.master;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,8 +14,12 @@ import mann.game.graphics.GraphicsEngine;
  * @author Jacob Mann
  */
 
+
 public class InputHandler implements KeyListener {
-	
+	private Boolean movementUp;
+	private Boolean movementDown;
+	private Boolean movementLeft;
+	private Boolean movementRight;
 	/**
 	 * Adds the KeyListener to the frame upon initialization
 	 * @param graphics
@@ -75,7 +81,7 @@ public class InputHandler implements KeyListener {
 		toggleKey(e.getKeyCode(), false);
 	}
 
-	public void keyTyped(KeyEvent e) {
+	public void keyTyped1(KeyEvent e) {
 		
 	}
 	
@@ -102,5 +108,49 @@ public class InputHandler implements KeyListener {
 			space.toggle(isPressed);
 		}
 	}
-
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+		// Probably will be unnecessary, but this method's presence is required for every KeyListener interface
+	}
+	@SuppressWarnings("unlikely-arg-type")
+	public Boolean getMovementUp(KeyEvent arg0) {
+		if(arg0.equals(KeyEvent.VK_UP)||(arg0.equals(KeyEvent.VK_W))) {
+			movementUp = true;
+			return movementUp;
+		}else {
+			movementUp = false;
+			return movementUp;
+		}
+	}
+	@SuppressWarnings("unlikely-arg-type")
+	public Boolean getMovementDown(KeyEvent arg0) {
+		if(arg0.equals(KeyEvent.VK_DOWN)||(arg0.equals(KeyEvent.VK_S))) {
+			movementDown = true;
+			System.out.println("Pressed D");
+			return movementDown;
+		}else {
+			movementDown = false;
+			return movementDown;
+		}
+	}
+	@SuppressWarnings("unlikely-arg-type")
+	public Boolean getMovementLeft(KeyEvent arg0) {
+		if(arg0.equals(KeyEvent.VK_LEFT)||(arg0.equals(KeyEvent.VK_A))) {
+			movementLeft = true;
+			return movementLeft;
+		}else {
+			movementLeft = false;
+			return movementLeft;
+		}
+	}
+	@SuppressWarnings("unlikely-arg-type")
+	public Boolean getMovementRight(KeyEvent arg0) {
+		if(arg0.equals(KeyEvent.VK_RIGHT)||arg0.equals(KeyEvent.VK_D)) {
+			movementRight = true;
+			return movementRight;
+		}else {
+			movementRight = false;
+			return movementRight;
+		}
+	}
 }

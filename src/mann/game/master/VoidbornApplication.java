@@ -93,5 +93,8 @@ public class VoidbornApplication implements Runnable {
 		new VoidbornApplication().start();
 
 	}
+	public InputHandler getInput() {
+		return input;
+	}
 
 }

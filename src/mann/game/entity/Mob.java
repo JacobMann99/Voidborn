@@ -7,10 +7,10 @@ public abstract class Mob extends Entity {
 
 	public Graphic graphic;
 
-	public Mob(int x, int y, int width, int height, String filepath) {
+	public Mob(int x, int y, int width, int height, String filepath, Hitbox hitbox) {
 		super(x, y, width, height);
-		hitbox = new Hitbox();
-		hitbox.init(this, 0, 0, width, height);
+		this.hitbox = new Hitbox();
+		this.hitbox.init(this, 0, 0, width, height);
 		graphic = new Graphic(filepath);
 	}
 

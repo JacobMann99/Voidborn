@@ -3,6 +3,10 @@ package mann.game.graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+import javax.swing.text.html.parser.Entity;
+
 import javax.imageio.ImageIO;
 
 /**
