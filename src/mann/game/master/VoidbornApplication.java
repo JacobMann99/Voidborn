@@ -78,7 +78,7 @@ public class VoidbornApplication implements Runnable {
 	}
 	
 	public void init() {
-		final int WIDTH = 1080;
+		final int WIDTH = 1920;
 		final int HEIGHT = WIDTH * 9 / 12;
 		
 		level = new Level();

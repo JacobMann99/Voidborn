@@ -1,7 +1,6 @@
 package mann.game.entity;
 
 import mann.game.entity.tool.Hitbox;
-import mann.game.graphics.Graphic;
 
 public abstract class Entity {
 

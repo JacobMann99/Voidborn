@@ -2,35 +2,46 @@ package mann.game.entity;
 
 import mann.game.entity.tool.Hitbox;
 import mann.game.graphics.Graphic;
+import mann.game.world.Zone;
 
 public abstract class Mob extends Entity {
 
+	protected Zone zone;
 	public Graphic graphic;
 
-	public Mob(int x, int y, int width, int height, String filepath, Hitbox hitbox) {
+	public Mob(int x, int y, int width, int height, String filepath, Hitbox hitbox, Zone zone) {
 		super(x, y, width, height);
-		this.hitbox = new Hitbox();
-		this.hitbox.init(this, 0, 0, width, height);
+		this.hitbox = new Hitbox(this, width, height, 0, 0);
 		graphic = new Graphic(filepath);
+		this.zone = zone;
 	}
 
 	public Mob(int x, int y, int width, int height, int hitWidth, int hitHeight, int hitboxXOffset,
-			int hitboxYOffset, String filepath) {
+			int hitboxYOffset, String filepath, Zone zone) {
 		super(x, y, width, height);
-		this.hitbox = new Hitbox();
-		this.hitbox.init(this, hitboxXOffset, hitboxYOffset, hitWidth, hitHeight);
+		this.hitbox = new Hitbox(this, hitWidth, hitHeight, hitboxXOffset, hitboxYOffset);
 		graphic = new Graphic(filepath);
+		this.zone = zone;
 	}
 
 	public boolean moveX(int xDelta) {
 		if (xDelta != 0) {
-			boolean dir = true;
-			if (xDelta > 0)
-				dir = false;
-			for (int i = 0; i < Math.abs(xDelta); i++) {
-				if (hitbox.isCollidingX(dir))
-					return false;
-				this.x += xDelta / Math.abs(xDelta);
+			boolean isColliding = false;
+			if (xDelta < 0) {
+				for (Entity e : zone.getEntities()) {
+					if (this.hitbox.isCollidingLeft(e.hitbox)) {
+						isColliding = true;
+					}
+				}
+				if (!isColliding) x--;
+			}
+			if (xDelta > 0) {
+				for (Entity e : zone.getEntities()) {
+					if (this.hitbox.isCollidingRight(e.hitbox)) {
+						isColliding = true;
+					}
+				}
+				if (!isColliding) x++;
 			}
 		}
 		return true;
@@ -38,13 +49,22 @@ public abstract class Mob extends Entity {
 
 	public boolean moveY(int yDelta) {
 		if (yDelta != 0) {
-			boolean dir = true;
-			if (yDelta > 0)
-				dir = false;
-			for (int i = 0; i < Math.abs(yDelta); i++) {
-				if (hitbox.isCollidingX(dir))
-					return false;
-				this.y += yDelta / Math.abs(yDelta);
+			boolean isColliding = false;
+			if (yDelta < 0) {
+				for (Entity e : zone.getEntities()) {
+					if (this.hitbox.isCollidingTop(e.hitbox)) {
+						isColliding = true;
+					}
+				}
+				if (!isColliding) y--;
+			}
+			if (yDelta > 0) {
+				for (Entity e : zone.getEntities()) {
+					if (this.hitbox.isCollidingBottom(e.hitbox)) {
+						isColliding = true;
+					}
+				}
+				if (!isColliding) y++;
 			}
 		}
 		return true;

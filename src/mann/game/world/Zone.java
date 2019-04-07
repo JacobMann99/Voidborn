@@ -47,4 +47,8 @@ public class Zone {
 		return height * 36;
 	}
 	
+	public int[] getSpawn(int spawnNumber) {
+		return new int[]{0, 0};
+	}
+	
 }

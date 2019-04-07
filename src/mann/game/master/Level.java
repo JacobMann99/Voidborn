@@ -34,7 +34,7 @@ public class Level {
 	
 	public void init() {
 		zone = new Zone("/testimages/Untitled-4.png");
-		player = new Player(600, 600, 76, 164, "/testimages/player_test.png", this.input, null);
+		player = new Player(600, 600, 76, 164, "/testimages/player_test.png", this.input, null, zone);
 		for (Entity e : zone.getEntities()) {
 			entityList.add(e);
 			renderList.add(e);
@@ -48,6 +48,7 @@ public class Level {
 			e.tick();
 		}
 		graphics.setOffset(player.getX(), player.getY() - player.getHeight() * 2 / 3);
+		if (input.escape.isPressed()) System.exit(0);
 	}
 	
 	public ArrayList<Entity> getRenderables() {
