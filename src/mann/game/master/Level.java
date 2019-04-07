@@ -11,8 +11,8 @@ import mann.game.graphics.GraphicsEngine;
 import mann.game.world.Zone;
 
 /**
- * Controls game logic; represented by the main class's tick() method. All processes besides graphics
- * respond to this class.
+ * Controls game logic; represented by the main class's tick() method. All
+ * processes besides graphics respond to this class.
  * 
  * @author Jacob Mann
  */
@@ -24,14 +24,14 @@ public class Level {
 	private ArrayList<Entity> renderList = new ArrayList<Entity>();
 	private Zone zone;
 	private Player player;
-	
+
 	public void initialize(GraphicsEngine g, InputHandler input) {
 		this.graphics = g;
 		this.input = input;
 		graphics.setLevel(this);
 		init();
 	}
-	
+
 	public void init() {
 		zone = new Zone("/testimages/Untitled-4.png");
 		player = new Player(600, 600, 76, 164, "/testimages/player_test.png", this.input, null, zone);
@@ -42,19 +42,21 @@ public class Level {
 		entityList.add(player);
 		renderList.add(player);
 	}
-	
+
 	public void tick() {
 		for (Entity e : entityList) {
 			e.tick();
 		}
-		graphics.setOffset(player.getX(), player.getY() - player.getHeight() * 2 / 3);
-		if (input.escape.isPressed()) System.exit(0);
+		graphics.setScreenCenter(player.getX() + player.getWidth() / 2,
+				player.getY() + player.getHeight() / 2 - (graphics.height / 16));
+		if (input.escape.isPressed())
+			System.exit(0);
 	}
-	
+
 	public ArrayList<Entity> getRenderables() {
 		return renderList;
 	}
-	
+
 	public Zone getZone() {
 		return zone;
 	}

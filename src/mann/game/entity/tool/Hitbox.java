@@ -26,8 +26,8 @@ public class Hitbox {
 	public void update(int width, int height, int xOffset, int yOffset) {
 		xBound[0] = entity.getX() + xOffset;
 		xBound[1] = entity.getX() + xOffset + width;
-		yBound[0] = entity.getY() + yOffset;
-		yBound[1] = entity.getY() + yOffset + height;
+		yBound[0] = entity.getY() + yOffset - height;
+		yBound[1] = entity.getY() + yOffset;
 	}
 
 	public boolean isColliding(Hitbox other) {
@@ -36,7 +36,7 @@ public class Hitbox {
 		return false;
 	}
 
-	public boolean isCollidingTop(Hitbox other) {
+	public boolean isCollidingBottom(Hitbox other) {
 		if (checkIfNull(other)) return false;
 		if (!checkIfAlignedX(other)) return false;
 		if (yBound[1] == other.yBound[0] || yBound[1] == other.yBound[0] - 1) {
@@ -45,7 +45,7 @@ public class Hitbox {
 		return false;
 	}
 
-	public boolean isCollidingBottom(Hitbox other) {
+	public boolean isCollidingTop(Hitbox other) {
 		if (checkIfNull(other)) return false;
 		if (!checkIfAlignedX(other)) return false;
 		if (yBound[0] == other.yBound[1] || yBound[0] == other.yBound[1] + 1) {
@@ -54,7 +54,7 @@ public class Hitbox {
 		return false;
 	}
 
-	public boolean isCollidingLeft(Hitbox other) {
+	public boolean isCollidingRight(Hitbox other) {
 		if (checkIfNull(other)) return false;
 		if (!checkIfAlignedY(other)) return false;
 		if (xBound[1] == other.xBound[0] || xBound[1] == other.xBound[0] - 1) {
@@ -63,7 +63,7 @@ public class Hitbox {
 		return false;
 	}
 
-	public boolean isCollidingRight(Hitbox other) {
+	public boolean isCollidingLeft(Hitbox other) {
 		if (checkIfNull(other)) return false;
 		if (!checkIfAlignedY(other)) return false;
 		if (xBound[0] == other.xBound[1] || xBound[0] == other.xBound[1] + 1) {

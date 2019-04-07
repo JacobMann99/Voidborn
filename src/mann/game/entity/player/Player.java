@@ -10,15 +10,19 @@ public class Player extends Mob {
 	InputHandler input;
 	
 	public Player(int x, int y, int width, int height, String filepath, InputHandler input, Hitbox hitbox, Zone zone) {
-		super(x, y, width, height, width - 6, height - 6, 3, 6, filepath, zone);
+		super(x, y, width, height, width - 22, height - 6, 9, -1, filepath, zone);
 		this.input = input;
 	}
 	
 	public void tick() {
-		if (input.up.isPressed()) moveY(-1);
-		if (input.down.isPressed()) moveY(1);
-		if (input.left.isPressed()) moveX(-1);
-		if (input.right.isPressed()) moveX(1);
+		if (input.up.isPressed()) move(0, -2);
+		//if (input.up.isPressed()) moveY(-1);
+		if (input.down.isPressed()) move(0, 2);
+		//if (input.down.isPressed()) moveY(1);
+		if (input.left.isPressed()) move(-2, 0);
+		//if (input.left.isPressed()) moveX(-1);
+		if (input.right.isPressed()) move(2, 0);
+		//if (input.right.isPressed()) moveX(1);
 	}
 
 	public int[] render() {

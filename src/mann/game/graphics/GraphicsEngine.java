@@ -27,8 +27,8 @@ public class GraphicsEngine {
 	private boolean hasLevel = false;
 	private Level level;
 
-	private int width;
-	private int height;
+	public int width;
+	public int height;
 	private int xOffset;
 	private int yOffset;
 
@@ -86,13 +86,15 @@ public class GraphicsEngine {
 			canvas.createBufferStrategy(2);
 			return;
 		}
-		
+
 		for (Entity e : level.getRenderables()) {
 			int[] entityPixels = e.render();
 			for (int i = 0; i < e.getWidth(); i++) {
 				for (int j = 0; j < e.getHeight(); j++) {
-					if (i - xOffset + e.getX() < 0) continue;
-					if (i - xOffset + 1 + e.getX() > width) continue;
+					if (i - xOffset + e.getX() < 0)
+						continue;
+					if (i - xOffset + 1 + e.getX() > width)
+						continue;
 					int position = (i - xOffset + e.getX()) + (j - yOffset + e.getY() - (e.getHeight() - 1)) * width;
 					if (entityPixels[i + j * e.getWidth()] >= 0 && position >= 0 && position < width * height) {
 						pixels[position] = entityPixels[i + j * e.getWidth()];
@@ -101,42 +103,31 @@ public class GraphicsEngine {
 			}
 		}
 		/**
-		for (int i = 0; i < width; i++) {
-			for (int j = 0; j < height; j++) {
-				int position = i + j * width;
-				if (i + xOffset < 0) {
-					pixels[position] = 0x000000;
-					continue;
-				}
-				if (i + xOffset + 1 > level.getZone().getWidth()) {
-					pixels[position] = 0x000000;
-					continue;
-				}
-				if (j + yOffset < 0) {
-					pixels[position] = 0x000000;
-					continue;
-				}
-				if (j + yOffset + 1 > level.getZone().getHeight()) {
-					pixels[position] = 0x000000;
-					continue;
-				}
-			}
-		}
-		**/
+		 * for (int i = 0; i < width; i++) { for (int j = 0; j < height; j++) { int
+		 * position = i + j * width; if (i + xOffset < 0) { pixels[position] = 0x000000;
+		 * continue; } if (i + xOffset + 1 > level.getZone().getWidth()) {
+		 * pixels[position] = 0x000000; continue; } if (j + yOffset < 0) {
+		 * pixels[position] = 0x000000; continue; } if (j + yOffset + 1 >
+		 * level.getZone().getHeight()) { pixels[position] = 0x000000; continue; } } }
+		 **/
 		Graphics g = bs.getDrawGraphics();
 		g.drawImage(image, 0, 0, canvas.getWidth(), canvas.getHeight(), null);
 
 		g.dispose();
 		bs.show();
 	}
-	
-	public void setOffset(int xOffset, int yOffset) {
-		this.xOffset = xOffset - width / 2;
-		this.yOffset = yOffset - height / 2;
-		if (this.xOffset < 0) this.xOffset = 0;
-		if (this.xOffset > level.getZone().getWidth() - width) this.xOffset = level.getZone().getWidth() - width;
-		if (this.yOffset < 0) this.yOffset = 0;
-		if (this.yOffset > level.getZone().getHeight() - height) this.yOffset = level.getZone().getHeight() - height;
+
+	public void setScreenCenter(int xCenter, int yCenter) {
+		this.xOffset = xCenter - width / 2;
+		this.yOffset = yCenter - height / 2;
+		if (this.xOffset < 0)
+			this.xOffset = 0;
+		if (this.xOffset > level.getZone().getWidth() - width / 2)
+			this.xOffset = level.getZone().getWidth() - width / 2;
+		if (this.yOffset < 0)
+			this.yOffset = 0;
+		if (this.yOffset > level.getZone().getHeight() - height / 2)
+			this.yOffset = level.getZone().getHeight() - height / 2;
 	}
 
 }
