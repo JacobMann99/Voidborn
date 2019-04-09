@@ -63,7 +63,7 @@ public class VoidbornApplication implements Runnable {
 			}
 			
 			try {
-				Thread.sleep(2);
+				Thread.sleep(3);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

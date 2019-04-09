@@ -47,7 +47,7 @@ public class Level {
 		for (Entity e : entityList) {
 			e.tick();
 		}
-		graphics.setScreenCenter(player.getX() + player.getWidth() / 2,
+		graphics.setPreferredScreenCenter(player.getX() + player.getWidth() / 2,
 				player.getY() + player.getHeight() / 2 - (graphics.height / 16));
 		if (input.escape.isPressed())
 			System.exit(0);

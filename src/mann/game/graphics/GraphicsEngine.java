@@ -117,7 +117,7 @@ public class GraphicsEngine {
 		bs.show();
 	}
 
-	public void setScreenCenter(int xCenter, int yCenter) {
+	public void setPreferredScreenCenter(int xCenter, int yCenter) {
 		this.xOffset = xCenter - width / 2;
 		this.yOffset = yCenter - height / 2;
 		if (this.xOffset < 0)
